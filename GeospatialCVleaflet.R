@@ -1,9 +1,14 @@
 library(leaflet)
 
-leaflet() %>% 
- addTiles() %>%
- addMarkers(data = CV, lng = ~ CV$Longitude, lat = ~CV$Latitude, 
- 	popup = Organization,icon = icons(
+CV %>% #Dataframe for leaflet
+	leaflet() %>% #Activate leaflet
+ addTiles() %>% #Add basemap
+ addMarkers(lng = ~ CV$Longitude, #Longitude data 
+ 	lat = ~CV$Latitude, #Latitude points
+ 	popup = ~paste("Organization:", Organization,
+ 		"<br/>",
+ 		"Sector:", Sector),
+ 	icon = icons( #Add images of icons based on sector
  		iconUrl = ifelse(CV$Sector == "Public Service",
  			"https://image.flaticon.com/icons/svg/1534/1534080.svg",
  			ifelse(CV$Sector == "Non Profit",
@@ -14,7 +19,8 @@ leaflet() %>%
  					"https://www.pinclipart.com/picdir/middle/78-784074_
  					tech-time-advanced-technology-technology-icon-clipart.png"
  					))),
- 		iconWidth = 20, iconHeight = 20))
+ 		iconWidth = 20, iconHeight = 20), #Icon width and height
+ 	) 
 
 
 
