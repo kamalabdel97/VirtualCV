@@ -20,7 +20,9 @@ CV %>% #Dataframe for leaflet
  					tech-time-advanced-technology-technology-icon-clipart.png"
  					))),
  		iconWidth = 20, iconHeight = 20), #Icon width and height
- 	) 
+   #clusterOptions = markerClusterOptions() Checking for duplicates for now 
+ 	) %>%
+  addMiniMap()
 
 
 
